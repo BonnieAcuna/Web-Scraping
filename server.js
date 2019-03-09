@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 
 const db = require("./models");
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -22,10 +22,12 @@ app.set('views', __dirname + '/views');
 app.engine("handlebars", exphbs({ defaultLayout: "main", layoutsDir: __dirname + "/views/layouts" }));
 app.set("view engine", "handlebars");
 
+const MONGODB_URI = process.env.MONGODB_URI; 
 if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI);
+}
 
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/mongoHeadLines", { useNewUrlParser: true});
 
 app.get("/scrape", function(req, res) {
     axios.get("http://www.cnn.com/").then(function(response) {
