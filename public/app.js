@@ -1,8 +1,19 @@
-$.getJSON("/articles", function(data) {
-    for (let i = 0; i < data.length; i++) {
-        $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-    }
-});
+// $.getJSON("/", function(data) {
+//     for (let i = 0; i < data.length; i++) {
+//         $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+//     }
+// });
+$(document).ready(function(){
+
+$(".btn-sm").on("click", function(req, res) {
+    $.ajax({
+        type: "GET",
+        url: "/scrape"
+    }).then(function(data){
+       ; location.reload();
+    });
+})
+    
 
 $(document).on("click", "p", function() {
     $("#notes").empty();
@@ -37,8 +48,13 @@ $(document).on("click", "savenote", function() {
     })
     .then(function(data) {
         console.log(data);
+        
     });
 
     $("titleinput").val("");
     $("bodyinput").val("");
 });
+
+$()
+
+})

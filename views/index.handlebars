@@ -1,6 +1,54 @@
 <div id="wrapper">
-    <h1>Web Scraper</h1>
+
+<div id="articles" class="articles-container">
+{{#if articles}}
+
+  <div class="row">
+    <div class="col-sm-12"></div>
+    {{#each articles}}
+      <div class="col-sm-12" data-id="{{this._id}}">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+                <div class="blue-text">{{title}}</div>
+            </span>
+            <a href="{{link}}" class="black-text">View Article</a>
+            <p>{{summary}}</p>
+          </div>
+          <div class="card-action">
+            <a href="/save" class="orange-text btn-save">Save Article</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+{{else}}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-panel text-center">
+        <span>There are no Articles</span>
+      </div>
+    </div>
+  </div>
+
+{{/if}}
+
+
+
+
+
+
+
     
-    <div id="articles"></div>
-    <div id="notes"></div>
+    {{!-- <div id="articles">
+        <h3>Articles</h3>
+        {{#each article}}
+        <h5>{{title}}</h5>
+        <p>{{summary}}</p>
+        <a href="{{link}}">View Article</a>
+        {{/each}}
+    </div>
+    <div id="notes"></div> --}}
 </div>

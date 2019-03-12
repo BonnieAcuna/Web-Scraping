@@ -12,10 +12,20 @@ const ArticleSchema = new Schema({
         required: true
     },
 
-    note: {
-        type: Schema.Types.ObjectId,
-        ref: "Note"
-    }
+    summary: {
+        type: String,
+        required: true
+    },
+
+    // note: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Note"
+    // },
+
+    // saved: {
+    //     type: Boolean,
+    //     default: false
+    // }
 });
 
 const Article = mongoose.model("Article", ArticleSchema);
