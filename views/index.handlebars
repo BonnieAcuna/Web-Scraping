@@ -1,3 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Web Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link save-article" href="/save">Saved Articles</a>
+      </li>
+      <button type="button" class="btn btn-danger btn-sm">Scrape New Articles</button>
+      
+    </ul>
+  </div>
+</nav>
+
 <div id="wrapper">
 
 <div id="articles" class="articles-container">
@@ -16,7 +35,7 @@
             <p>{{summary}}</p>
           </div>
           <div class="card-action">
-            <a href="/save" class="orange-text btn-save">Save Article</a>
+            <button class="orange-text btn-save" data-id="{{this._id}}">Save Article</button>
           </div>
         </div>
       </div>

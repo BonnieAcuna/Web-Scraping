@@ -36,6 +36,16 @@ $(document).on("click", "p", function() {
     });
 });
 
+$(".btn-save").on("click", function() {
+    const thisId = $(this).attr("data-id");
+    // console.log("THIS ID",thisId)
+    $.ajax({
+        method: "POST",
+        url: "/save/" + thisId
+       
+    })
+}) 
+
 $(document).on("click", "savenote", function() {
     const thisId = $(this).attr("data-id");
     $.ajax({
@@ -55,6 +65,8 @@ $(document).on("click", "savenote", function() {
     $("bodyinput").val("");
 });
 
-$()
+// $(".btn-save").on("click", function() {
+    
+// })
 
 })
