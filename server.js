@@ -37,6 +37,10 @@ app.get("/", function (req, res) {
         });
 });
 
+// app.get("/save", function(req, res) {
+//      res.render("save");
+// })
+    
 
 
 app.get("/scrape", function (req, res) {
@@ -99,8 +103,14 @@ app.post("/save/:id", function(req, res) {
 })
 
 app.get("/save", function(req, res) {
-    db.Article.find({ saved: true }).then(function(data) {
-        res.json(data)
+    db.Article.find({ saved: true }).then(function(error, data) {
+        if (error) {
+        res.json(error)
+        } else {
+            res.render("save", {
+                news: dbArticle
+              });
+        }
     })
 })
 

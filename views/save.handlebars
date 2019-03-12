@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Web Scraper</a>
+<nav class="navbar navbar-expand-lg navbar-primary bg-light">
+  <a class="navbar-brand text-dark" href="/">Web Scraper</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -16,3 +16,24 @@
     </ul>
   </div>
 </nav>
+
+<div id="articles-saved" class="articles-saved-container">
+{{#if articles-saved}}
+
+  <div class="row">
+    <div class="col-sm-12"></div>
+    {{#each articles}}
+      <div class="col-sm-12" data-id="{{this._id}}">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+                <div class="blue-text ml-1">{{title}}</div>
+            </span>
+            <a href="{{link}}" class="black-text ml-1">View Article</a>
+            <p class="summary-text ml-1">{{summary}}</p>
+          </div>
+          
+        </div>
+      </div>
+    {{/each}}
+  </div>

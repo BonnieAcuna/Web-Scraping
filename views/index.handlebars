@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Web Scraper</a>
+<nav class="navbar navbar-expand-lg navbar-primary bg-light mb-3">
+  <a class="navbar-brand nav-title text-dark" href="/">Web Scraper</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,6 +18,11 @@
 </nav>
 
 <div id="wrapper">
+  <div class="row">
+    <div class="col-md-12">
+    <h1 class="title-row text-center">Web Scraper</h1>
+    </div>
+  </div>
 
 <div id="articles" class="articles-container">
 {{#if articles}}
@@ -29,13 +34,13 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-                <div class="blue-text">{{title}}</div>
+                <div class="blue-text ml-1">{{title}}</div>
             </span>
-            <a href="{{link}}" class="black-text">View Article</a>
-            <p>{{summary}}</p>
+            <a href="{{link}}" class="black-text ml-1">View Article</a>
+            <p class="summary-text ml-1">{{summary}}</p>
           </div>
           <div class="card-action">
-            <button class="orange-text btn-save" data-id="{{this._id}}">Save Article</button>
+            <button class="orange-text btn-save btn-primary mb-1 ml-1" data-id="{{this._id}}">Save Article</button>
           </div>
         </div>
       </div>
@@ -54,20 +59,5 @@
 
 {{/if}}
 
-
-
-
-
-
-
-    
-    {{!-- <div id="articles">
-        <h3>Articles</h3>
-        {{#each article}}
-        <h5>{{title}}</h5>
-        <p>{{summary}}</p>
-        <a href="{{link}}">View Article</a>
-        {{/each}}
-    </div>
-    <div id="notes"></div> --}}
+</div>
 </div>

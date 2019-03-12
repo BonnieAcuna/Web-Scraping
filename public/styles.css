@@ -1,0 +1,17 @@
+body {
+    background-color: lightblue;
+}
+
+.articles-container {
+    width: 95%;
+    border: 2px solid black;
+    margin-left: 2.5%;
+}
+
+.card-title {
+    font-size: 28px;
+}
+
+.nav-title {
+    font-size: 30px;
+}
