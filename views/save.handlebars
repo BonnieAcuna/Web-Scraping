@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-primary bg-light">
+<nav class="navbar navbar-expand-lg navbar-primary bg-light mb-3">
   <a class="navbar-brand text-dark" href="/">Web Scraper</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -12,28 +13,36 @@
         <a class="nav-link" href="/save">Saved Articles</a>
       </li> --}}
       {{!-- <button type="button" class="btn btn-danger btn-sm">Scrape New Articles</button> --}}
-      
+
     </ul>
   </div>
 </nav>
 
-<div id="articles-saved" class="articles-saved-container">
-{{#if articles-saved}}
-
+<div id="wrapper">
   <div class="row">
-    <div class="col-sm-12"></div>
-    {{#each articles-saved}}
+    <div class="col-md-12">
+      <h2 class="title-row text-center">Saved Articles</h2>
+    </div>
+  </div>
+  <div class="save-container">
+    <div class="row">
+      <div class="col-sm-12"></div>
+      {{#each articles}}
       <div class="col-sm-12" data-id="{{this._id}}">
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-                <div class="blue-text ml-1">{{title}}</div>
+              <div class="blue-text ml-1">{{title}}</div>
             </span>
             <a href="{{link}}" class="black-text ml-1">View Article</a>
             <p class="summary-text ml-1">{{summary}}</p>
           </div>
-          
+          <div class="card-action">
+            <button class="orange-text btn-save btn-primary mb-1 ml-1" data-id="{{this._id}}">Notes</button>
+          </div>
         </div>
       </div>
-    {{/each}}
+      {{/each}}
+    </div>
   </div>
+</div>

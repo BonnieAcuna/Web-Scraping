@@ -24,3 +24,9 @@ body {
     font-size: 48px;
     background-color: rgb(241, 221, 195);
 }
+
+.save-container {
+    width: 95%;
+    border: 2px solid black;
+    margin-left: 2.5%;
+}

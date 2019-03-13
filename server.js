@@ -102,37 +102,36 @@ app.post("/save/:id", function(req, res) {
     })
 })
 
-app.get("/save", function(req, res) {
-    db.Article.find({ saved: true }).then(function(error, data) {
-        if (error) {
-        res.json(error)
-        } else {
-            res.render("save", {
-                news: dbArticle
-              });
-        }
+app.get("/save", function (req, res) {
+    db.Article.find({
+      saved: true
+    }).then(function (dbArticle) {
+      res.render("save", {
+        articles: dbArticle
+      })
+      }).catch(function(err){
+        res.json(err); 
     })
-})
+  })
 
-app.put("/saved/:id", function(req, res) {
+  app.put("/save/:id", function (req, res) {
     db.Article.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body
-      },
-      {
-        new: true
-      }
-    )
-      .then(function(dbArticle) {
-        res.render("tech", {
+        req.params.id, {
+          $set: req.body
+        }, {
+          new: true
+        }
+      )
+      .then(function (dbArticle) {
+        res.render("save", {
           articles: dbArticle
         });
       })
-      .catch(function(err) {
+      .catch(function (err) {
         res.json(err);
       });
   });
+
 
 app.get("/articles/:id", function(req, res) {
     dbArticle.findOne({ _id: req.params.id })

@@ -37,14 +37,16 @@ $(document).on("click", "p", function() {
 });
 
 $(".btn-save").on("click", function() {
-    const thisId = $(this).attr("data-id");
-    // console.log("THIS ID",thisId)
-    $.ajax({
-        method: "POST",
-        url: "/save/" + thisId
-       
-    })
-}) 
+    let newSavedArticle = $(this).data();
+    newSavedArticle.saved = true;
+    let thisId = $(this).attr("data-id");
+    $.ajax( "/save/" + thisId, {
+        type: "PUT",
+        data: newSavedArticle
+    }).then(function(data){
+        location.reload();
+    });
+});
 
 $(document).on("click", "savenote", function() {
     const thisId = $(this).attr("data-id");
