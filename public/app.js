@@ -15,7 +15,7 @@ $(".btn-sm").on("click", function(req, res) {
 })
     
 
-$(document).on("click", "p", function() {
+$(document).on("click", ".btn-notes",function() {
     $("#notes").empty();
     const thisId = $(this).attr("data-id");
     $.ajax({
@@ -24,11 +24,14 @@ $(document).on("click", "p", function() {
     })
     .then(function(data) {
         console.log(data);
-        $("#notes").append("<h2>" + data.title + "</h2>");
-        $("#notes").append("<input id='titleinput' name='title' >");
-        $("#notes").append("<textarea id='bodyinput' name='body'></textarea");
-        $("#notes").append("<button data-id='" + data_id + "' id='savenote'>Save Note</button>");
-        
+        // $("#" + thisId + "notes").append("<h2>" + data.title + "</h2>");
+        $("#" + thisId + "notes").append("<p></p>");
+        $("#" + thisId + "notes").append("<input id='titleinput' name='title' >");
+        $("#" + thisId + "notes").append("<p></p>");
+        $("#" + thisId + "notes").append("<textarea id='bodyinput' name='body'></textarea>");
+        $("#" + thisId + "notes").append("<p></p>");
+        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' id='savenote' class='btn btn-primary'>Save Note</button>");
+        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' id='savenote' class='btn btn-primary'>Close Note</button>");
         if (data.note) {
             $("#titleinput").val(data.note.title);
             $("bodyinput").val(data.note.body);
@@ -48,7 +51,7 @@ $(".btn-save").on("click", function() {
     });
 });
 
-$(document).on("click", "savenote", function() {
+$("#savenote").on("click", function() {
     const thisId = $(this).attr("data-id");
     $.ajax({
         method: "POST",
@@ -67,8 +70,6 @@ $(document).on("click", "savenote", function() {
     $("bodyinput").val("");
 });
 
-// $(".btn-save").on("click", function() {
-    
-// })
+
 
 })

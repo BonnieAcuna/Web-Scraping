@@ -29,7 +29,7 @@ mongoose.connect(MONGODB_URI);
 app.get("/", function (req, res) {
     db.Article.find({})
         .then(function (dbArticle) {
-            // console.log(dbArticle)
+            
             res.render("index", { articles: dbArticle });
         })
         .catch(function (err) {
@@ -37,9 +37,7 @@ app.get("/", function (req, res) {
         });
 });
 
-// app.get("/save", function(req, res) {
-//      res.render("save");
-// })
+
     
 
 
@@ -47,21 +45,7 @@ app.get("/scrape", function (req, res) {
     console.log('hit');
     axios.get("https://www.nytimes.com/section/us").then(function (response) {
         let $ = cheerio.load(response.data);
-        // console.log($)
-        // $("article").each(function(i, element) {
-        //     let result = {};
-        //     result.title = $(element).text();
-        //     result.link = $(element).children("a").attr("href");
-        //     console.log(result);
-        //     // db.Article.create(result)
-        //     // .then(function(dbArticle) {
-        //     //     console.log(dbArticle);
-        //     // })
-        //     // .catch(function(err) {
-        //     //     console.log(err);
-        //     // });
-        // });
-
+        
         $(".css-ye6x8s").each((i, element) => {
             i === 0 && console.log();
             const link = 'https://www.nytimes.com/' + $(element).find('a').attr('href');
@@ -69,8 +53,7 @@ app.get("/scrape", function (req, res) {
             const summary = $(element).find('p').text();
             const articleImg = $(element).find('img').attr('src');
             console.log(articleImg);
-            // console.log("Title")
-            // console.log($(element).text())
+            
 
             const newArticle = {
                 link,
@@ -82,10 +65,7 @@ app.get("/scrape", function (req, res) {
             db.Article.create(newArticle).then(res => console.log(res)).catch(err => console.log(err));
             
         })
-        // $(".css-1echdzn").each((i, element) => {
-        //     console.log("Summary")
-        //     console.log($(element).text())
-        // })
+        
 
 
         res.send("Scrape Complete");
@@ -93,8 +73,7 @@ app.get("/scrape", function (req, res) {
 });
 
 app.post("/save/:id", function(req, res) {
-    // db.Article.create(req.body)
-//   console.log(req.params.id);
+    
   db.Article.find({_id:req.params.id})
     .then(function(data) {
         data[0].saved = true;
@@ -134,7 +113,7 @@ app.get("/save", function (req, res) {
 
 
 app.get("/articles/:id", function(req, res) {
-    dbArticle.findOne({ _id: req.params.id })
+    db.Article.findOne({ _id: req.params.id })
     .populate("note")
     .then(function(dbArticle) {
         res.json(dbArticle)
