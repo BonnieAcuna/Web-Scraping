@@ -12,8 +12,7 @@ $(".btn-sm").on("click", function(req, res) {
     }).then(function(data){
        ; location.reload();
     });
-})
-    
+})    
 
 $(document).on("click", ".btn-notes",function() {
     $("#notes").empty();
