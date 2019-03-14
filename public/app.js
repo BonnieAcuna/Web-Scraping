@@ -29,8 +29,8 @@ $(document).on("click", ".btn-notes",function() {
         $("#" + thisId + "notes").append("<p></p>");
         $("#" + thisId + "notes").append("<textarea id='bodyinput' name='body'></textarea>");
         $("#" + thisId + "notes").append("<p></p>");
-        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' id='savenote' class='btn btn-primary'>Save Note</button>");
-        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' id='savenote' class='btn btn-primary'>Close Note</button>");
+        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' class='btn btn-primary savenote'>Save Note</button>");
+        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' class='btn btn-primary savenote'>Close Note</button>");
         if (data.note) {
             $("#titleinput").val(data.note.title);
             $("bodyinput").val(data.note.body);
@@ -50,7 +50,8 @@ $(".btn-save").on("click", function() {
     });
 });
 
-$("#savenote").on("click", function() {
+$(".savenote").on("click", function() {
+    console.log("HITT")
     const thisId = $(this).attr("data-id");
     $.ajax({
         method: "POST",
@@ -68,6 +69,7 @@ $("#savenote").on("click", function() {
     $("titleinput").val("");
     $("bodyinput").val("");
 });
+
 
 
 
