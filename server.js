@@ -136,7 +136,7 @@ app.post("/articles/:id", function(req, res) {
 });
 
 app.delete("/delete/:id", function (req, res) {
-    dbNote.remove({"_id":req.params.id})
+    db.Note.deleteOne({"_id":req.params.id})
     .then(function (article) {
       if (article) {
         console.log(article);

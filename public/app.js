@@ -30,11 +30,40 @@ $(document).on("click", ".btn-notes",function() {
         $("#" + thisId + "notes").append("<textarea id='bodyinput' name='body'></textarea>");
         $("#" + thisId + "notes").append("<p></p>");
         $("#" + thisId + "notes").append("<button data-id='" + thisId + "' class='btn btn-primary savenote'>Save Note</button>");
-        $("#" + thisId + "notes").append("<button data-id='" + thisId + "' class='btn btn-primary savenote'>Close Note</button>");
+        $("#" + thisId + "notes").append("<button class='btn btn-primary deletenote'>Delete Note</button>");
         if (data.note) {
             $("#titleinput").val(data.note.title);
-            $("bodyinput").val(data.note.body);
+            $("#bodyinput").val(data.note.body);
+            $('#bodyinput').data('id', data.note._id)
         }
+        $(".savenote").on("click", function() {
+            console.log("HITT")
+            const thisId = $(this).attr("data-id");
+            $.ajax({
+                method: "POST",
+                url: "/articles/" + thisId,
+                data: {
+                    title: $("#titleinput").val(),
+                    body: $("#bodyinput").val()
+                }
+            })
+            .then(function(data) {
+                console.log(data);
+                
+            });
+        
+            $("#titleinput").val("");
+            $("#bodyinput").val("");
+        });
+        $(".deletenote").on("click", function() {
+            const thisId = $(this).attr("data-id");
+            console.log(thisId);
+            console.log($('#bodyinput').data('id'))
+            $.ajax({
+                method: "DELETE",
+                url: "/delete/" + thisId,
+            })
+        })
     });
 });
 
@@ -50,25 +79,7 @@ $(".btn-save").on("click", function() {
     });
 });
 
-$(".savenote").on("click", function() {
-    console.log("HITT")
-    const thisId = $(this).attr("data-id");
-    $.ajax({
-        method: "POST",
-        url: "/articles/" + thisId,
-        data: {
-            title: $("#titleinput").val(),
-            body: $("#bodyinput").val()
-        }
-    })
-    .then(function(data) {
-        console.log(data);
-        
-    });
 
-    $("titleinput").val("");
-    $("bodyinput").val("");
-});
 
 
 
